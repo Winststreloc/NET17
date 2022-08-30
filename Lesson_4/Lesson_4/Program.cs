@@ -6,6 +6,9 @@ namespace Lesson_4
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Hello, everybody \n plus = +\n " +
+                "minus = -\n / = /\n sqrt a or b= sqrt\n " +
+                "remainder = остаток от деления \n percent = %");
             bool endApp = false;
             double result;
 
@@ -48,7 +51,7 @@ namespace Lesson_4
                 case "/":
                     number = a / b;
                     break;
-                case "proc":
+                case "percent":
                     number = a * (b / 100);
                     break;
                 case "sqrt a":
