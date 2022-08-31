@@ -25,17 +25,13 @@ namespace Lesson_4
                 result = Calculator(a, b, operation);
                 Console.WriteLine(result);
 
-                Console.WriteLine("Continue?");
-                if (Console.ReadLine() == "no")
-                {
-                    endApp = true;
-                }
-
+                endApp = Continue();
             }
 
 
         }
 
+        
         public static double Calculator(double a, double b, string operation)
         {
             double number = 0;
@@ -69,6 +65,13 @@ namespace Lesson_4
             }
 
             return number;
+        }
+
+        static bool Continue()
+        {
+            Console.WriteLine("Continue?");
+            string answer = Console.ReadLine();
+            return answer == "no" ? true : false;
         }
 
     }
