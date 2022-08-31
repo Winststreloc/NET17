@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\NET17",
+    "\\NET17\\Lesson_4",
+    "\\NET17\\Lesson_4\\Lesson_4"
   ],
-  "SelectedNode": "\\Lesson-4.sln",
+  "SelectedNode": "\\NET17\\Lesson_4\\Lesson_4\\Program.cs",
   "PreviewInSolutionExplorer": false
 }
