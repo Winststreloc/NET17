@@ -4,11 +4,16 @@ namespace Lesson_4
 {
     class Program
     {
+        //const
         const string sqrtOper = "sqrt";
         const string plusOper = "plus";
         const string minusOper = "minus";
         const string divideOper = "/";
         const string remainderOper = "remainder";
+        const string percentOper = "percent";
+
+
+
         static void Main(string[] args)
         {
             Hello();
@@ -31,46 +36,28 @@ namespace Lesson_4
                 Console.WriteLine("What is operation?");
                 string operation = Console.ReadLine();
 
-                Console.WriteLine("EnterNumeber");
-                if (operation != sqrtOper)
-                {
-                    double a = Convert.ToDouble(Console.ReadLine());
-                    double b = Convert.ToDouble(Console.ReadLine());
-                    result = Calculator(a, operation, b);
-                }
-                else 
-                { 
-                    double a = Convert.ToDouble(Console.ReadLine());
-                    result = Calculator(a, operation);
-                }
+                result = NeedTwoOperator(operation);
                 Console.WriteLine(result);
 
                 endApp = AskIfContinue();
             }
         }
-        
-        public static double Calculator(double a, string operation, double b = default)
+        static double NeedTwoOperator(string operation)
         {
+            Console.WriteLine("EnterNumeber");
 
-            switch (operation)
+            if (operation != sqrtOper)
             {
-                case plusOper:
-                    return Plus(a,b);
-                case minusOper:
-                    return Minus(a,b);
-                case divideOper:
-                    return Divide(a,b);
-                case "percent":
-                    return a * (b / 100);
-                case sqrtOper:
-                    return Math.Sqrt(a);
-                case remainderOper:
-                    return Remainder(a,b);
-                default:
-                    throw new Exception("404");
+                double a = Convert.ToDouble(Console.ReadLine());
+                double b = Convert.ToDouble(Console.ReadLine());
+                return Calculator(a, operation, b);
+            }
+            else
+            {
+                double a = Convert.ToDouble(Console.ReadLine());
+                return Calculator(a, operation);
             }
         }
-
         static bool AskIfContinue()
         {
             Console.WriteLine("Continue?");
@@ -78,34 +65,29 @@ namespace Lesson_4
             return answer == "no" ? true : false;
         }
 
-        public static double Plus(double a, double b)
+        public static double Calculator(double a, string operation, double b = default)
         {
-            return a + b;
+
+            switch (operation)
+            {
+                case plusOper:
+                    return Operation.Plus(a,b);
+                case minusOper:
+                    return Operation.Minus(a,b);
+                case divideOper:
+                    return Operation.Divide(a,b);
+                case percentOper:
+                    return Operation.Percent(a, b);
+                case sqrtOper:
+                    return Operation.Sqrt(a);
+                case remainderOper:
+                    return Operation.Remainder(a,b);
+                default:
+                    throw new Exception("404");
+            }
         }
 
-        public static double Minus(double a, double b)
-        {
-            return a - b;
-        }
-        public static double Divide(double a, double b)
-        {
-            return a + b;
-        }
-
-        public static double Percent(double a, double b)
-        {
-            return a * (b / 100);
-        }
-
-        public static double Sqrt(double a)
-        {
-            return Math.Sqrt(a);
-        }
-
-        public static double Remainder(double a, double b)
-        {
-            return a % b;
-        }
+        
 
     }
 }
