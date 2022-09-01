@@ -4,6 +4,11 @@ namespace Lesson_4
 {
     class Program
     {
+        const string sqrtOper = "sqrt";
+        const string plusOper = "plus";
+        const string minusOper = "minus";
+        const string divideOper = "/";
+        const string remainderOper = "remainder";
         static void Main(string[] args)
         {
             Hello();
@@ -12,7 +17,7 @@ namespace Lesson_4
         public static void Hello()
         {
             Console.WriteLine("Hello, everybody \n plus = +\n " +
-                "minus = -\n / = /\n sqrt a or b= sqrt\n " +
+                "minus = -\n divider = /\n sqrt = sqrt\n " +
                 "remainder = остаток от деления \n percent = %");
         }
 
@@ -27,7 +32,7 @@ namespace Lesson_4
                 string operation = Console.ReadLine();
 
                 Console.WriteLine("EnterNumeber");
-                if (operation != "sqrt")
+                if (operation != sqrtOper)
                 {
                     double a = Convert.ToDouble(Console.ReadLine());
                     double b = Convert.ToDouble(Console.ReadLine());
@@ -49,17 +54,17 @@ namespace Lesson_4
 
             switch (operation)
             {
-                case "plus":
+                case plusOper:
                     return Plus(a,b);
-                case "minus":
+                case minusOper:
                     return Minus(a,b);
-                case "/":
+                case divideOper:
                     return Divide(a,b);
                 case "percent":
                     return a * (b / 100);
-                case "sqrt":
+                case sqrtOper:
                     return Math.Sqrt(a);
-                case "remainder":
+                case remainderOper:
                     return Remainder(a,b);
                 default:
                     throw new Exception("404");
