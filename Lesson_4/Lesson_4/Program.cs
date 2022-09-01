@@ -42,37 +42,26 @@ namespace Lesson_4
         
         public static double Calculator(double a, double b, string operation)
         {
-            double number = 0;
 
             switch (operation)
             {
                 case "plus":
-                    number = Plus(a,b);
-                    break;
+                    return Plus(a,b);
                 case "minus":
-                    number = Minus(a,b);
-                    break;
+                    return Minus(a,b);
                 case "/":
-                    number = Divide(a,b);
-                    break;
+                    return Divide(a,b);
                 case "percent":
-                    number = a * (b / 100);
-                    break;
+                    return a * (b / 100);
                 case "sqrt a":
-                    number = Math.Sqrt(a);
-                    break;
+                    return Math.Sqrt(a);
                 case "sqrt b":
-                    number = Math.Sqrt(b);
-                    break;
+                    return Math.Sqrt(b);
                 case "remainder":
-                    number = Remainder(a,b);
-                    break;
+                    return Remainder(a,b);
                 default:
-                    number = default;
-                    break;
+                    throw new Exception("404");
             }
-
-            return number;
         }
 
         static bool Continue()
