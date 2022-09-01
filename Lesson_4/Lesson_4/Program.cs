@@ -6,11 +6,21 @@ namespace Lesson_4
     {
         static void Main(string[] args)
         {
+            Hello();
+            StartApp();
+        }
+        public static void Hello()
+        {
             Console.WriteLine("Hello, everybody \n plus = +\n " +
                 "minus = -\n / = /\n sqrt a or b= sqrt\n " +
                 "remainder = остаток от деления \n percent = %");
+        }
+
+        public static void StartApp()
+        {
             bool endApp = false;
             double result;
+
 
 
             while (!endApp)
@@ -27,8 +37,6 @@ namespace Lesson_4
 
                 endApp = Continue();
             }
-
-
         }
 
         
@@ -39,13 +47,13 @@ namespace Lesson_4
             switch (operation)
             {
                 case "plus":
-                    number = a + b;
+                    number = Plus(a,b);
                     break;
                 case "minus":
-                    number = a - b;
+                    number = Minus(a,b);
                     break;
                 case "/":
-                    number = a / b;
+                    number = Divide(a,b);
                     break;
                 case "percent":
                     number = a * (b / 100);
@@ -57,7 +65,7 @@ namespace Lesson_4
                     number = Math.Sqrt(b);
                     break;
                 case "remainder":
-                    number = a % b;
+                    number = Remainder(a,b);
                     break;
                 default:
                     number = default;
@@ -72,6 +80,40 @@ namespace Lesson_4
             Console.WriteLine("Continue?");
             string answer = Console.ReadLine();
             return answer == "no" ? true : false;
+        }
+
+        public static double Plus(double a, double b)
+        {
+            return a + b;
+        }
+
+        public static double Minus(double a, double b)
+        {
+            return a - b;
+        }
+        public static double Divide(double a, double b)
+        {
+            return a + b;
+        }
+
+        public static double Percent(double a, double b)
+        {
+            return a * (b / 100);
+        }
+
+        public static double SqrtA(double a, double b)
+        {
+            return Math.Sqrt(a);
+        }
+
+        public static double SqrtB(double a, double b)
+        {
+            return Math.Sqrt(b);
+        }
+
+        public static double Remainder(double a, double b)
+        {
+            return a % b;
         }
 
     }
