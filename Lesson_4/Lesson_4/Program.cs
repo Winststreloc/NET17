@@ -21,26 +21,30 @@ namespace Lesson_4
             bool endApp = false;
             double result;
 
-
-
             while (!endApp)
             {
                 Console.WriteLine("What is operation?");
                 string operation = Console.ReadLine();
 
                 Console.WriteLine("EnterNumeber");
-                double a = Convert.ToDouble(Console.ReadLine());
-                double b = Convert.ToDouble(Console.ReadLine());
-
-                result = Calculator(a, b, operation);
+                if (operation != "sqrt")
+                {
+                    double a = Convert.ToDouble(Console.ReadLine());
+                    double b = Convert.ToDouble(Console.ReadLine());
+                    result = Calculator(a, operation, b);
+                }
+                else 
+                { 
+                    double a = Convert.ToDouble(Console.ReadLine());
+                    result = Calculator(a, operation);
+                }
                 Console.WriteLine(result);
 
-                endApp = Continue();
+                endApp = AskIfContinue();
             }
         }
-
         
-        public static double Calculator(double a, double b, string operation)
+        public static double Calculator(double a, string operation, double b = default)
         {
 
             switch (operation)
@@ -53,10 +57,8 @@ namespace Lesson_4
                     return Divide(a,b);
                 case "percent":
                     return a * (b / 100);
-                case "sqrt a":
+                case "sqrt":
                     return Math.Sqrt(a);
-                case "sqrt b":
-                    return Math.Sqrt(b);
                 case "remainder":
                     return Remainder(a,b);
                 default:
@@ -64,7 +66,7 @@ namespace Lesson_4
             }
         }
 
-        static bool Continue()
+        static bool AskIfContinue()
         {
             Console.WriteLine("Continue?");
             string answer = Console.ReadLine();
@@ -90,14 +92,9 @@ namespace Lesson_4
             return a * (b / 100);
         }
 
-        public static double SqrtA(double a, double b)
+        public static double Sqrt(double a)
         {
             return Math.Sqrt(a);
-        }
-
-        public static double SqrtB(double a, double b)
-        {
-            return Math.Sqrt(b);
         }
 
         public static double Remainder(double a, double b)
