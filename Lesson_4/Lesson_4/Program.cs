@@ -16,6 +16,7 @@ namespace Lesson_4
 
         static void Main(string[] args)
         {
+            Console.WriteLine(Test.Solve(1234));
             Hello();
             StartApp();
         }
@@ -62,29 +63,22 @@ namespace Lesson_4
         {
             Console.WriteLine("Continue?");
             string answer = Console.ReadLine();
-            return answer == "no" ? true : false;
+            return answer == "no";
         }
 
         public static double Calculator(double a, string operation, double b = default)
         {
 
-            switch (operation)
+            return operation switch
             {
-                case plusOper:
-                    return Operation.Plus(a,b);
-                case minusOper:
-                    return Operation.Minus(a,b);
-                case divideOper:
-                    return Operation.Divide(a,b);
-                case percentOper:
-                    return Operation.Percent(a, b);
-                case sqrtOper:
-                    return Operation.Sqrt(a);
-                case remainderOper:
-                    return Operation.Remainder(a,b);
-                default:
-                    throw new Exception("404");
-            }
+                plusOper => Operation.Plus(a, b),
+                minusOper => Operation.Minus(a, b),
+                divideOper => Operation.Divide(a, b),
+                percentOper => Operation.Percent(a, b),
+                sqrtOper => Operation.Sqrt(a),
+                remainderOper => Operation.Remainder(a, b),
+                _ => throw new Exception("404"),
+            };
         }
 
         
