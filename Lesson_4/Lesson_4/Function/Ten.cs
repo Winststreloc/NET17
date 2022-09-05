@@ -8,6 +8,7 @@ namespace Lesson_4.Function
     {
         public static string Solve(int a)
         {
+            object name;
             int sum = 0;
             while(a / 10 > 10)
             {
