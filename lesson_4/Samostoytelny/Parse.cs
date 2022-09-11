@@ -11,13 +11,20 @@ namespace Samostoytelny
         public static Stack<string> operand = new Stack<string>();
         public static Stack<double> number = new Stack<double>();
         public static string regSqrt = @"(sqrt)(\d+)";
+
+
         public static double Solve(string str)
         {
             str = str.Trim(' ');
-            string tempStr = str;
-            ReplaceSqrtInStr(str);
             double result = FillStack(str);
-            RAM.operations.Add(result, tempStr);
+            try
+            {
+            RAM.operations.Add(str, result);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             return result;
         }
 
@@ -55,6 +62,7 @@ namespace Samostoytelny
 
         static double FillStack(string str)
         {
+            ReplaceSqrtInStr(str);
             foreach (var s in str)
             {
                 if (double.TryParse(s.ToString(), out double num))
@@ -86,17 +94,13 @@ namespace Samostoytelny
         }
         public static void PopStack()
         {
-            try
-            {
+
                 double temp1 = number.Pop();
                 double temp2 = number.Pop();
                 double temp = CalculatorSwitch(operand.Pop(), temp2, temp1);
                 number.Push(temp);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("noname exception", ex.Message);
-            }
+            
+
         }
 
         public static double CalculatorSwitch(string operation, double a, double b)

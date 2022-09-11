@@ -6,13 +6,13 @@ namespace Samostoytelny
 {
     public static class RAM
     {
-        public static Dictionary<double, string> operations = new Dictionary<double, string>(5);
+        public static Dictionary<string, double> operations = new Dictionary<string, double>(5);
 
         public static void AllResult()
         {
             foreach (var res in operations)
             {
-                Console.WriteLine($"Result: {res.Key} value: {res.Value}");
+                Console.WriteLine($"Result: {res.Value} value: {res.Key}");
             }
         }
         public static string ChoiceUser(int a)
@@ -25,7 +25,7 @@ namespace Samostoytelny
                     i++;
                     if(i == a)
                     {
-                        return res.Value;
+                        return res.Key;
                     }
 
                 }

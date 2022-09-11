@@ -10,9 +10,10 @@ namespace Samostoytelny
         {
             Console.WriteLine("Hello, Enter exception");
             bool endApp = false;
+            string temp = "";
             while (!endApp)
             {
-                string text = Console.ReadLine();
+                string text = temp + Console.ReadLine();
                 if (text == "all")
                 {
                     RAM.AllResult();
@@ -21,7 +22,8 @@ namespace Samostoytelny
                 {
                     text.Trim(' ');
                     text = text.Substring(6);
-                    Console.Write(RAM.ChoiceUser(Convert.ToInt32(text)));
+                    temp = RAM.ChoiceUser(Convert.ToInt32(text));
+                    Console.Write(temp);
                 }
                 else
                 {
