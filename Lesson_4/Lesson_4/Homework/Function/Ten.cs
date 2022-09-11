@@ -8,13 +8,16 @@ namespace Lesson_4.Function
     {
         public static string Solve(int a)
         {
-            object name;
             int sum = 0;
-            while(a / 10 > 10)
+            do
             {
                 sum += a % 10;
+                Console.WriteLine(sum);
                 a /= 10;
+                Console.WriteLine(a);
             }
+            while (a / 10 > 0);
+            sum += a;
             return $"Summ = {sum}";
         }
     }

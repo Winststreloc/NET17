@@ -1,30 +1,18 @@
 ﻿using System;
+using System.Linq;
+
 
 namespace Lesson_4
 {
     class Program
     {
-        //const
-        const string sqrtOper = "sqrt";
-        const string plusOper = "plus";
-        const string minusOper = "minus";
-        const string divideOper = "/";
-        const string remainderOper = "remainder";
-        const string percentOper = "percent";
-
-
+        public readonly static string[] allOperations = new string[] { "+", "-", "*", "/", "%", "rem" };
+        
 
         static void Main(string[] args)
         {
-            Console.WriteLine(Test.Solve(1234));
-            Hello();
+            AskUser.Hello();
             StartApp();
-        }
-        public static void Hello()
-        {
-            Console.WriteLine("Hello, everybody \n plus = +\n " +
-                "minus = -\n divider = /\n sqrt = sqrt\n " +
-                "remainder = остаток от деления \n percent = %");
         }
 
         public static void StartApp()
@@ -34,54 +22,68 @@ namespace Lesson_4
 
             while (!endApp)
             {
-                Console.WriteLine("What is operation?");
-                string operation = Console.ReadLine();
+                bool parse = AskUser.AskParseOrSwitch();
+                if (parse)
+                {
 
-                result = NeedTwoOperator(operation);
-                Console.WriteLine(result);
+                    try
+                    {
+                        result = CalculatorExpression();
+                        Console.WriteLine(result);
+                    }
+                    catch (FormatException e)
+                    {
+                        Console.WriteLine(e.Message);
+                        StartApp();
+                    }
 
-                endApp = AskIfContinue();
+                }
+                else
+                {
+                    Console.WriteLine("What is operation?");
+                    result = NeedTwoOperator(Console.ReadLine());
+                    Console.WriteLine(result);
+                }
+                endApp = AskUser.AskIfContinue();
             }
         }
+
         static double NeedTwoOperator(string operation)
         {
             Console.WriteLine("EnterNumeber");
-
-            if (operation != sqrtOper)
+            if (operation != "sqrt")
             {
                 double a = Convert.ToDouble(Console.ReadLine());
                 double b = Convert.ToDouble(Console.ReadLine());
-                return Calculator(a, operation, b);
+                return CalculatorSwitch(operation, a, b);
             }
             else
             {
                 double a = Convert.ToDouble(Console.ReadLine());
-                return Calculator(a, operation);
+                return CalculatorSwitch(operation, a);
             }
         }
-        static bool AskIfContinue()
-        {
-            Console.WriteLine("Continue?");
-            string answer = Console.ReadLine();
-            return answer == "no";
-        }
 
-        public static double Calculator(double a, string operation, double b = default)
+        public static double CalculatorSwitch(string operation, double a, double b = default)
         {
 
             return operation switch
             {
-                plusOper => Operation.Plus(a, b),
-                minusOper => Operation.Minus(a, b),
-                divideOper => Operation.Divide(a, b),
-                percentOper => Operation.Percent(a, b),
-                sqrtOper => Operation.Sqrt(a),
-                remainderOper => Operation.Remainder(a, b),
+                "+" => Operation.Plus(a, b),
+                "-" => Operation.Minus(a, b),
+                "*" => Operation.Multiply(a, b),
+                "/" => Operation.Divide(a, b),
+                "%" => Operation.Percent(a, b),
+                "sqrt" => Operation.Sqrt(a),
+                "rem" => Operation.Remainder(a, b),
                 _ => throw new Exception("404"),
             };
         }
 
-        
-
+        public static double CalculatorExpression()
+        {
+            string str = Console.ReadLine();
+            return Operation.Expression(str);
+        }
     }
 }
