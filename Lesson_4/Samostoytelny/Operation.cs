@@ -31,5 +31,19 @@ namespace Samostoytelny
         {
             return Math.Pow(a, b);
         }
+        public static double CalculatorSwitch(string operation, double a, double b)
+        {
+
+            return operation switch
+            {
+                "+" => Plus(a, b),
+                "-" => Minus(a, b),
+                "*" => Multiply(a, b),
+                "/" => Divide(a, b),
+                "sqrt" => Sqrt(a),
+                "^" => Pow(a, b),
+                _ => throw new Exception("operation non supported"),
+            };
+        }
     }
 }

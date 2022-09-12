@@ -7,25 +7,33 @@ namespace Samostoytelny
 {
     public class Parse
     {
-        public const char END_LINE = '\n';
         public static Stack<string> operand = new Stack<string>();
         public static Stack<double> number = new Stack<double>();
-        public static string regSqrt = @"(sqrt)(\d+)";
 
 
         public static double Solve(string str)
         {
-            str = str.Trim(' ');
+            str = PreProcess(str);
             double result = FillStack(str);
             try
             {
-            RAM.operations.Add(str, result);
+                RAM.operations.Add(str, result);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
             return result;
+        }
+        public static string PreProcess(string str)
+        {
+            str = str.Trim(' ');
+            ReplaceSqrtInStr(str);
+            str = str.Replace("-(", "-1*(");
+            str = str.Replace("--", "+");
+            str = str.Replace(",", ".");
+
+            return str;
         }
 
         static int GetPriority(string action)
@@ -44,79 +52,91 @@ namespace Samostoytelny
         static string ReplaceSqrtInStr(string str)
         {
 
-            if (!Regex.IsMatch(str, regSqrt))
+            if (!Regex.IsMatch(str, Constant.regSqrt))
             {
                 return str;
             }
             else
             {
-                Match temp = Regex.Match(str, regSqrt);
+                Match temp = Regex.Match(str, Constant.regSqrt);
                 string text = temp.ToString();
-                text = text.Substring(4);
+                text = text[Constant.sqrt..];
 
-                str = Regex.Replace(str, regSqrt, $"{ Operation.Sqrt(double.Parse(text))}");
+                str = Regex.Replace(str, Constant.regSqrt, $"{ Operation.Sqrt(double.Parse(text))}");
                 return str;
             }
-            
+
         }
 
         static double FillStack(string str)
         {
-            ReplaceSqrtInStr(str);
-            foreach (var s in str)
-            {
-                if (double.TryParse(s.ToString(), out double num))
-                {
-                    number.Push(num);
-                }
-                else
+            for (int i = 0; i < str.Length; i++)
+            { 
+                string temp = default;
+
+                if (!double.TryParse(str[i].ToString(), out _))
                 {
                     try
                     {
-                        if (GetPriority(s.ToString()) <= GetPriority(operand.Peek()))
+                        if (GetPriority(str[i].ToString()) <= GetPriority(operand.Peek()))
                         {
                             PopStack();
                         }
                     }
                     catch
                     {
-                        
+
                     }
-                    
-                    operand.Push(s.ToString());
+                    operand.Push(str[i].ToString());
+
+                }
+                else
+                {
+                    bool endApp = true;
+                    while (endApp)
+                    {
+                        if (i < str.Length)
+                        {
+                            if ((double.TryParse(str[i].ToString(), out double num)) || str[i].ToString() == ".")
+                            {
+                                if (str[i].ToString() == ".")
+                                {
+                                    temp += ",";
+                                }
+                                else temp += $"{num}";
+                                i++;
+                            }
+                            else
+                            {
+                                i--;
+                                endApp = false;
+                            }
+                        }
+                        else
+                        {
+                            endApp = false;
+                        }
+                        
+
+                    }
+                    number.Push(double.Parse(temp, System.Globalization.NumberStyles.AllowDecimalPoint));
+
                 }
             }
-            while(operand.Count >= 1)
+
+            while (operand.Count >= 1)
             {
                 PopStack();
             }
             return number.Pop();
         }
-        public static void PopStack()
+    public static void PopStack()
         {
-
                 double temp1 = number.Pop();
                 double temp2 = number.Pop();
-                double temp = CalculatorSwitch(operand.Pop(), temp2, temp1);
+                double temp = Operation.CalculatorSwitch(operand.Pop(), temp2, temp1);
                 number.Push(temp);
-            
-
         }
-
-        public static double CalculatorSwitch(string operation, double a, double b)
-        {
-
-            return operation switch
-            {
-                "+" => Operation.Plus(a, b),
-                "-" => Operation.Minus(a, b),
-                "*" => Operation.Multiply(a, b),
-                "/" => Operation.Divide(a, b),
-                "sqrt"=> Operation.Sqrt(a),
-                "^" => Operation.Pow(a, b),
-                _ => throw new Exception("operation non supported"),
-            };
-        }
-
-    }
+    }   
 }
+
