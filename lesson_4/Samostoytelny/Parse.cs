@@ -17,7 +17,7 @@ namespace Samostoytelny
             double result = FillStack(str);
             try
             {
-                RAM.operations.Add(str, result);
+                RAM.AddExample(str, result);
             }
             catch (Exception ex)
             {
@@ -67,60 +67,83 @@ namespace Samostoytelny
             }
 
         }
+        static void IfNumber(string str, int i)
+        {
+            string temp = default;
+            bool endApp = true;
+            while (endApp)
+            {
+                if (i < str.Length)
+                {
+                    if ((double.TryParse(str[i].ToString(), out double num)) || str[i].ToString() == ".")
+                    {
+                        if (str[i].ToString() == ".")
+                        {
+                            temp += ",";
+                        }
+                        else temp += $"{num}";
+                        i++;
+                    }
+                    else
+                    {
+                        i--;
+                        endApp = false;
+                    }
+                }
+                else
+                {
+                    endApp = false;
+                }
+
+
+            }
+            number.Push(double.Parse(temp, System.Globalization.NumberStyles.AllowDecimalPoint));
+        }
+        static void IfOperandPush(string str, int i)
+        {
+            try
+            {
+                if (GetPriority(str[i].ToString()) <= GetPriority(operand.Peek()))
+                {
+                    PopStack();
+                }
+            }
+            catch
+            {
+
+            }
+
+            operand.Push(str[i].ToString());
+        }
+        static void IfBracket()
+        {
+            while (operand.Peek() != "(")
+            {
+                PopStack();
+            }
+            operand.Pop();
+        }
 
         static double FillStack(string str)
         {
             for (int i = 0; i < str.Length; i++)
             { 
-                string temp = default;
-
                 if (!double.TryParse(str[i].ToString(), out _))
                 {
-                    try
-                    {
-                        if (GetPriority(str[i].ToString()) <= GetPriority(operand.Peek()))
-                        {
-                            PopStack();
-                        }
-                    }
-                    catch
-                    {
 
-                    }
-                    operand.Push(str[i].ToString());
+                        if(str[i].ToString() == ")")
+                        {
+                            IfBracket();
+                        }
+                        else
+                        {
+                            IfOperandPush(str, i);
+                        }
 
                 }
                 else
                 {
-                    bool endApp = true;
-                    while (endApp)
-                    {
-                        if (i < str.Length)
-                        {
-                            if ((double.TryParse(str[i].ToString(), out double num)) || str[i].ToString() == ".")
-                            {
-                                if (str[i].ToString() == ".")
-                                {
-                                    temp += ",";
-                                }
-                                else temp += $"{num}";
-                                i++;
-                            }
-                            else
-                            {
-                                i--;
-                                endApp = false;
-                            }
-                        }
-                        else
-                        {
-                            endApp = false;
-                        }
-                        
-
-                    }
-                    number.Push(double.Parse(temp, System.Globalization.NumberStyles.AllowDecimalPoint));
-
+                    IfNumber(str, i);
                 }
             }
 
@@ -132,10 +155,21 @@ namespace Samostoytelny
         }
     public static void PopStack()
         {
+            try
+            {
                 double temp1 = number.Pop();
                 double temp2 = number.Pop();
                 double temp = Operation.CalculatorSwitch(operand.Pop(), temp2, temp1);
                 number.Push(temp);
+            }
+            catch
+            {
+                Console.WriteLine("You confised me\n" +
+                    "Enter new example");
+                Program.StartApp();
+
+            }
+
         }
     }   
 }

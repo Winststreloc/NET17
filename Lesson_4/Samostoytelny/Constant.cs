@@ -8,5 +8,6 @@ namespace Samostoytelny
     {
         public const int choice = 6;
         public const int sqrt = 4;
+        public static string regSqrt = @"(sqrt)(\d+)";
     }
 }

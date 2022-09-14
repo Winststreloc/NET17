@@ -6,30 +6,28 @@ namespace Samostoytelny
 {
     public static class RAM
     {
-        public static Dictionary<string, double> operations = new Dictionary<string, double>(5);
+        public static List<string> exemple = new List<string>(5);
+        public static List<double> result = new List<double>(5);
 
+        public static void AddExample(string str, double res)
+        {
+            exemple.Add(str);
+            result.Add(res);
+        }
         public static void AllResult()
         {
-            foreach (var res in operations)
+            for(int i = 0; i < result.Count; i++)
             {
-                Console.WriteLine($"Result: {res.Value} value: {res.Key}");
+                Console.WriteLine($"{result[i]} = {exemple[i]}");
             }
+
+            
         }
         public static string ChoiceUser(int a)
         {
             if (a > 0 && a <= 5)
             {
-                int i = 0;
-                foreach(var res in operations)
-                {
-                    i++;
-                    if(i == a)
-                    {
-                        return res.Key;
-                    }
-
-                }
-                throw new Exception("non contains");
+                return exemple[a-1];  
             }
             else
             {
