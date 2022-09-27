@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lesson_4", "Lesson_4\Lesson
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samostoytelny", "Samostoytelny\Samostoytelny.csproj", "{35AF0FBD-966B-4746-92F0-EB5540681305}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lesson_6", "Lesson_6\Lesson_6.csproj", "{6230D285-E5D9-411F-BB31-BD7104D7DC69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lesson_8", "Lesson_6\Lesson_8.csproj", "{6230D285-E5D9-411F-BB31-BD7104D7DC69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

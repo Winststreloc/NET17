@@ -4,7 +4,6 @@ D:\Study\NET17\Lesson_4\Lesson_4\bin\Debug\netcoreapp3.1\Lesson_4.runtimeconfig.
 D:\Study\NET17\Lesson_4\Lesson_4\bin\Debug\netcoreapp3.1\Lesson_4.runtimeconfig.dev.json
 D:\Study\NET17\Lesson_4\Lesson_4\bin\Debug\netcoreapp3.1\Lesson_4.dll
 D:\Study\NET17\Lesson_4\Lesson_4\bin\Debug\netcoreapp3.1\Lesson_4.pdb
-D:\Study\NET17\Lesson_4\Lesson_4\obj\Debug\netcoreapp3.1\Lesson_4.csproj.AssemblyReference.cache
 D:\Study\NET17\Lesson_4\Lesson_4\obj\Debug\netcoreapp3.1\Lesson_4.GeneratedMSBuildEditorConfig.editorconfig
 D:\Study\NET17\Lesson_4\Lesson_4\obj\Debug\netcoreapp3.1\Lesson_4.AssemblyInfoInputs.cache
 D:\Study\NET17\Lesson_4\Lesson_4\obj\Debug\netcoreapp3.1\Lesson_4.AssemblyInfo.cs

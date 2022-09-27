@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lesson_8;
+using System;
 
 namespace Lesson_6
 {
@@ -6,7 +7,8 @@ namespace Lesson_6
     {
         static void Main(string[] args)
         {
-            
+            Console.WriteLine(CodeWars.IsPangram("abcdefghijklmopqrstuvwxyz"));
         }
+
     }
 }

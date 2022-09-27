@@ -40,7 +40,6 @@ namespace Samostoytelny
         {
             switch (action)
             {
-                case "sqrt":
                 case "^": return 3;
                 case "*":
                 case "/": return 2;
