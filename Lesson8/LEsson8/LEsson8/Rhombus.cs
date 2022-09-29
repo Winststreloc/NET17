@@ -2,19 +2,17 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LEsson8
+namespace Lesson8
 {
     public class Rhombus : Shape
     {
-        public Rhombus(int line, int column)
+        public Rhombus(int size, string oper, int line, int column) : base(size, oper, line, column)
         {
-            Column = column;
-            Line = line;
-        }
 
+        }
         public override void Print(int size, string oper, int line, int column)
         {
-            for (int y = 1; y < size *2; ++y, line++)
+            for (int y = 1; y < size * 2; ++y, line++)
             {
                 try
                 {
@@ -29,7 +27,7 @@ namespace LEsson8
                     Console.Write("Error in this line!!!!!!");
                 }
 
-                
+
             }
             Console.SetCursorPosition(column, line - size);
             Console.Write(oper);
@@ -49,7 +47,7 @@ namespace LEsson8
                 }
 
             }
-            Console.SetCursorPosition(column,line);
+            Console.SetCursorPosition(column, line);
             Console.Write(oper);
         }
     }

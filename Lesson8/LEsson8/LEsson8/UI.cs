@@ -5,143 +5,106 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using static System.Console;
 using static System.Net.Mime.MediaTypeNames;
+using System.Reflection;
+using System.Linq;
+using System.Drawing;
 
-namespace LEsson8
+
+namespace Lesson8
 {
     public class UI
     {
-        public static void Hello()
-        {
-            WriteLine("Hello, enter figure and size{n} and location on x, y \n" +
-                "Example: triangle \n5 \n15\n7\n" +
-                "If your want clear -  enter clear" +
-                "Okey, let s go !");
-            Thread.Sleep(2000);
-            Clear();
-            StartApp();
-        }
-        public static void StartApp()
-        {
+        private static readonly Assembly asmbly = Assembly.GetExecutingAssembly();
+        private static readonly List<Type> typeList = asmbly.GetTypes().Where(
+                t => t.GetInterface("IPrintable") != null).ToList();
 
+
+        public static void Start()
+        {
+            Type type = typeof(IPrintable);
+            Type[] types = Assembly.GetAssembly(type)?.GetTypes();
             bool endApp = false;
             while (!endApp)
             {
-                DeleteString(2);
                 WriteLine("Enter figure or word, znak / {skip}, size / {skip}, x, y");
-                string figure = ReadLine();
-                DeleteString(1);
-                if (figure == "triangle" || figure == "square" || figure == "rhombus")
-                {
-                    try
-                    {
-                        PrintShape(figure);
-                    }
-                    catch
-                    {
-                        Console.WriteLine("В чём проблема ввести нормально?");
-                        DeleteString(1);
-                        PrintShape(figure);
-                    }
+                PrintAllFigure();
 
-                }
-                else if (figure == "clear") Console.Clear();
-                else
+                string figure = EnterFigure();
+                object[] param = EnterParam(figure);
+
+
+                foreach (var item in types)
                 {
-                    try
+                    if (item.Name == figure)
                     {
-                        PrintText(figure);
-                    }
-                    catch
-                    {
-                        Console.WriteLine("В чём проблема ввести нормально?");
-                        DeleteString(1);
-                        PrintText(figure);
+                        var obj = (IPrintable)Activator.CreateInstance(item, param);
+                        obj.Print((int)param[0], (string)param[1], (int)param[2], (int)param[3]);
                     }
                 }
+                endApp = true;
 
             }
-
         }
-        public static void PrintText(string figure)
+        public static object[] EnterParam(string figure)
         {
-            Console.WriteLine("x=");
-            Console.SetCursorPosition(2, 1);
-            int x = int.Parse(ReadLine());
-            DeleteString(1);
-            Console.WriteLine("y=");
-            Console.SetCursorPosition(2, 1);
-            int y = int.Parse(ReadLine());
-            DeleteString(2);
-            Text text = new Text(x, y);
-            text.PrintText(figure, text.Line, text.Column);
-        }
-        public static void PrintShape(string figure)
-        {
-            Console.WriteLine("operator:");
-            Console.SetCursorPosition(9, 1);
-            string _oper = ReadLine();
-            DeleteString(1);
-            Console.WriteLine("radius / size :");
-            Console.SetCursorPosition(15, 1);
-            int _size = int.Parse(ReadLine());
-            DeleteString(1);
-            Console.WriteLine("x:");
-            Console.SetCursorPosition(2, 1);
-            int _x = int.Parse(ReadLine());
-            DeleteString(1);
-            Console.WriteLine("y:");
-            Console.SetCursorPosition(2, 1);
-            int _y = int.Parse(ReadLine());
-            DeleteString(2);
-            Shape shape = ReturnShape(figure, _x, _y);
-            shape.Print(_size, _oper, _x, _y);
-        }
-        public static void DeleteString(int a)
-        {
-            if (a == 2)
+            object[] param;
+            if (figure == "Text" || figure == "text")
             {
-                SetCursorPosition(0, 0);
-                WriteLine("                                                                      ");
-                SetCursorPosition(0, 1);
-                WriteLine("                                                                      ");
-                SetCursorPosition(0, 0);
+                Console.WriteLine("Enter text:");
+                string text = Console.ReadLine();
+                Console.WriteLine("Enter x:");
+                int x = int.Parse(Console.ReadLine());
+                Console.WriteLine("Enter y:");
+                int y = int.Parse(Console.ReadLine());
+                param = new object[] { text, x, y };
             }
             else
             {
-                SetCursorPosition(0, 1);
-                WriteLine("                                                                      ");
-                SetCursorPosition(0, 1);
+                Console.WriteLine("Enter size:");
+                int size = int.Parse(Console.ReadLine());
+                Console.WriteLine("Enter operator:");
+                string oper = Console.ReadLine();
+                Console.WriteLine("Enter x:");
+                int x = int.Parse(Console.ReadLine());
+                Console.WriteLine("Enter y:");
+                int y = int.Parse(Console.ReadLine());
+                param = new object[] { size, oper, x, y };
             }
-
+            return param;
         }
-
-        public static Shape ReturnShape(string text, int column, int line)
+        public static string EnterFigure()
         {
-            switch (text)
-            {
-                case "triangle":
-                    Triangle triangle = new Triangle(column, line);
-                    return triangle;
-                case "square":
-                    Square square = new Square(column, line);
-                    return square;
-                case "rhombus":
-                    Rhombus rhombus = new Rhombus(column, line);
-                    return rhombus;
-
-                default:
-                    return default;
-            }
+            Console.WriteLine("Enter you figure");
+            string figure = Console.ReadLine();
+            return figure;
         }
-    }     
-        //TODO Regular expression
-        //public void CreateFigure(string param)
+        //public static bool EndApp()
         //{
-        //    string patternFigures = "(Tr\\.? |Sq\\.? |Rh |Te\\.? )";
-        //    string patternNum = @"\d{1,2}";
-
-        //    Match figure = Regex.Match(param, patternFigures);
-        //    string shape = figure.ToString();
 
         //}
+
+        public static void DeleteString()
+        {
+            Console.SetCursorPosition(0, 1);
+            Console.Write("                                                         ");
+            Console.SetCursorPosition(0, 1);
+        }
+        public static void PrintAllFigure()
+        {
+            Console.Write("All figure: ");
+            foreach (var shape in typeList)
+            {
+                if (shape.Name == "Shape" || shape.Name == "Printer")
+                {
+                    continue;
+                }
+                else
+                {
+                    Console.Write($"{shape.Name} ");
+                }
+
+            }
+        }
+
+    }
 }

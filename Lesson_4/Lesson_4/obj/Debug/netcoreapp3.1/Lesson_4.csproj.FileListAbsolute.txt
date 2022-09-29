@@ -11,3 +11,4 @@ D:\Study\NET17\Lesson_4\Lesson_4\obj\Debug\netcoreapp3.1\Lesson_4.csproj.CoreCom
 D:\Study\NET17\Lesson_4\Lesson_4\obj\Debug\netcoreapp3.1\Lesson_4.dll
 D:\Study\NET17\Lesson_4\Lesson_4\obj\Debug\netcoreapp3.1\Lesson_4.pdb
 D:\Study\NET17\Lesson_4\Lesson_4\obj\Debug\netcoreapp3.1\Lesson_4.genruntimeconfig.cache
+D:\Study\NET17\Lesson_4\Lesson_4\obj\Debug\netcoreapp3.1\Lesson_4.csproj.AssemblyReference.cache

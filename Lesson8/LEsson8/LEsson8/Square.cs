@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LEsson8
+namespace Lesson8
 {
     class Square : Shape
     {
-        public Square(int line, int column)
+        public Square(int size, string oper, int line, int column) : base(size, oper, line, column)
         {
-            Column = column;
-            Line = line;
-        }
 
+        }
         public override void Print(int size, string oper, int line, int column)
         {
             Console.SetCursorPosition(line, column);

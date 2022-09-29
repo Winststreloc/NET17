@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace LEsson8
+namespace Lesson8
 {
     class Program
     {
         static void Main(string[] args)
         {
-            UI.Hello();
+            UI.Start();
             Console.ReadKey();
         }
     }
