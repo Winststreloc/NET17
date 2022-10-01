@@ -4,7 +4,7 @@ using System.Data.Common;
 using System.Drawing;
 using System.Text;
 
-namespace Lesson8
+namespace Lesson8.ShapeAndMore
 {
     public abstract class Shape : IPrintable
     {
@@ -20,6 +20,11 @@ namespace Lesson8
             Column = column;
         }
         public abstract void Print(int size, string oper, int line, int column);
+
+        public void Print(string text, int line, int column)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }
