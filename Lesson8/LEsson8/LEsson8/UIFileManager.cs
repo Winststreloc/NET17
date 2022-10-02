@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Threading;
 
 namespace Lesson8
 {
@@ -38,6 +39,7 @@ namespace Lesson8
                 string line;
                 while ((line = reader.ReadLine()) != null)
                 {
+                    Thread.Sleep(200);
                     Console.WriteLine(line);
                 }
             }

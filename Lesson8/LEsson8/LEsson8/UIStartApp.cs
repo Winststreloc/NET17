@@ -1,30 +1,23 @@
-﻿using System;
+﻿using Lesson8.ShapeAndMore;
+using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
-using static System.Console;
-using static System.Net.Mime.MediaTypeNames;
-using System.Reflection;
 using System.Linq;
-using System.Drawing;
-using Lesson8.ShapeAndMore;
-using System.IO;
+using System.Reflection;
 
 namespace Lesson8
 {
 
     public class UIStartApp
     {
-        public static ConsolePrinter printer = new ConsolePrinter();
+        private static readonly ConsolePrinter Printer = new ConsolePrinter();
         private static readonly Assembly asmbly = Assembly.GetExecutingAssembly();
         private static readonly List<Type> typeList = asmbly.GetTypes().Where(
                 t => t.GetInterface("IPrintable") != null).ToList();
 
-        
+
         public static void Start()
         {
-            printer.printLine("You want work with file?\n");
+            Printer.printLine("You want work with file?\n");
             UIFileManager.NeedStart(Console.ReadLine());
             Drawing();
 
@@ -43,22 +36,23 @@ namespace Lesson8
             string figure = EnterFigure();
             object[] param = EnterParam(figure);
 
-            foreach (var item in types)
-            {
-                if (item.Name == figure)
+            if (types != null)
+                foreach (var item in types)
                 {
-                    if (figure != "Text")
+                    if (item.Name == figure)
                     {
-                        var obj = (IPrintable)Activator.CreateInstance(item, param);
-                        obj.Print((int)param[0], (string)param[1], (int)param[2], (int)param[3]);
-                    }
-                    else
-                    {
-                        var obj = (IPrintable)Activator.CreateInstance(item, param);
-                        obj.Print((string)param[0], (int)param[1], (int)param[2]);
+                        if (figure != "Text")
+                        {
+                            var obj = (IPrintable)Activator.CreateInstance(item, param);
+                            obj?.Print((int)param[0], (string)param[1], (int)param[2], (int)param[3]);
+                        }
+                        else
+                        {
+                            var obj = (IPrintable)Activator.CreateInstance(item, param);
+                            obj?.Print((string)param[0], (int)param[1], (int)param[2]);
+                        }
                     }
                 }
-            }
         }
         public static void EndApp(string endApp)
         {
@@ -70,30 +64,30 @@ namespace Lesson8
             object[] param;
             if (figure == "Text" || figure == "text")
             {
-                printer.print("Enter text: ");
+                Printer.print("Enter text: ");
                 string text = Console.ReadLine();
                 DeleteString();
-                printer.print("Enter x: ");
+                Printer.print("Enter x: ");
                 int x = int.Parse(Console.ReadLine());
                 DeleteString();
-                printer.print("Enter y: ");
+                Printer.print("Enter y: ");
                 int y = int.Parse(Console.ReadLine());
                 DeleteString();
                 param = new object[] { text, x, y };
             }
             else
             {
-                printer.print("Enter size: ");
+                Printer.print("Enter size: ");
                 int size = int.Parse(Console.ReadLine());
                 DeleteString();
-                printer.print("Enter operator: ");
+                Printer.print("Enter operator: ");
                 string oper = Console.ReadLine();
                 DeleteString();
-                printer.print("Enter x: ");
+                Printer.print("Enter x: ");
                 int x = int.Parse(Console.ReadLine());
                 DeleteString();
-                printer.print("Enter y: ");
-                int y = int.Parse(Console.ReadLine());
+                Printer.print("Enter y: ");
+                int y = int.Parse(Console.ReadLine() ?? string.Empty);
                 DeleteString();
                 param = new object[] { size, oper, x, y };
             }
@@ -101,7 +95,7 @@ namespace Lesson8
         }
         public static string EnterFigure()
         {
-            printer.print("Enter you figure: ");
+            Printer.print("Enter you figure: ");
             string figure = Console.ReadLine();
             DeleteString();
             return figure;
@@ -116,27 +110,24 @@ namespace Lesson8
         public static void DeleteAllString()
         {
             Console.SetCursorPosition(0, 0);
-            Console.Write("                                                         ");
+            Console.Write("                                                                      ");
             Console.SetCursorPosition(0, 1);
-            Console.Write("                                                         ");
+            Console.Write("                                                                      ");
             Console.SetCursorPosition(0, 0);
         }
         public static void PrintAllFigure()
         {
-            printer.print("All figure: ");
+            Printer.print("All figure: ");
             foreach (var shape in typeList)
             {
-                if (shape.Name == "Shape" || shape.Name == "Printer")
-                {
-                    continue;
-                }
-                else
+                if (shape.Name != "Shape" && shape.Name != "Printer")
                 {
                     Console.Write($"{shape.Name} ");
+
                 }
 
             }
-            printer.print(" ");
+            Printer.print(" ");
 
         }
 

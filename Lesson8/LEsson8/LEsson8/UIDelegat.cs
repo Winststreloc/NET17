@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using static Lesson8.IPrinter;
 
 namespace Lesson8
 {
