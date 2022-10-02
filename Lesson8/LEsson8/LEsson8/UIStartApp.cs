@@ -13,28 +13,18 @@ using System.IO;
 
 namespace Lesson8
 {
+
     public class UIStartApp
     {
+        delegate void EndApplication(string message);
+        event EndApplication Notify;
+
         private static readonly Assembly asmbly = Assembly.GetExecutingAssembly();
         private static readonly List<Type> typeList = asmbly.GetTypes().Where(
                 t => t.GetInterface("IPrintable") != null).ToList();
-
+        
         public static void Start()
         {
-            FileStream ostrm;
-            StreamWriter writer;
-            TextWriter oldOut = Console.Out;
-            try
-            {
-                ostrm = new FileStream("./Redirect.txt", FileMode.OpenOrCreate, FileAccess.Write);
-                writer = new StreamWriter(ostrm);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Cannot open Redirect.txt for writing");
-                Console.WriteLine(e.Message);
-                return;
-            }
             Type type = typeof(IPrintable);
             Type[] types = Assembly.GetAssembly(type)?.GetTypes();
 
@@ -64,7 +54,6 @@ namespace Lesson8
             TaskCompleted completed = EndApp;
             UIDelegat endapp = new UIDelegat();
             endapp.ContinueWork(completed);
-            writer.Close();
         }
         public static void EndApp(string endApp)
         {

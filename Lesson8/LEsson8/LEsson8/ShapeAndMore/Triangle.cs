@@ -9,7 +9,7 @@ namespace Lesson8.ShapeAndMore
     [ColorPrint(ConsoleColor.Blue)]
     public class Triangle : Shape
     {
-        ConsolePrinter printer = new ConsolePrinter();
+        FilePrinter printer = new FilePrinter();
         public Triangle(int size, string oper, int line, int column) : base(size, oper, line, column)
         {
 
@@ -26,12 +26,12 @@ namespace Lesson8.ShapeAndMore
             {
                 for (int j = column; j != 0; j--)
                 {
-                    printer.print(" ");
+                    printer.Print(" ");
                 }
-                printer.print(oper);
+                printer.Print(oper);
                 for (int m = (size - i) * 2; m != 0; m--)
-                    printer.print(oper);
-                printer.print("\n");
+                    printer.Print(oper);
+                printer.Print("\n");
                 column--;
             }
 
