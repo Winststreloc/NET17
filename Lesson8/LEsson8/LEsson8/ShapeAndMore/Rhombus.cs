@@ -8,7 +8,7 @@ namespace Lesson8.ShapeAndMore
     [ColorPrint(ConsoleColor.Blue)]
     public class Rhombus : Shape
     {
-        ConsolePrinter printer = new ConsolePrinter();
+        FilePrinter printer = new FilePrinter();
         public Rhombus(int size, string oper, int line, int column) : base(size, oper, line, column)
         {
 
@@ -25,38 +25,38 @@ namespace Lesson8.ShapeAndMore
                 try
                 {
                     printer.SetCursor(column - y, line);
-                    printer.print(oper);
+                    printer.Print(oper);
                     printer.SetCursor(column + y, line);
-                    printer.print(oper);
+                    printer.Print(oper);
                 }
                 catch
                 {
                     printer.SetCursor(0, line);
-                    printer.print("Error in this line!!!!!!");
+                    printer.PrintLine("Error in this line!!!!!!");
                 }
 
 
             }
             printer.SetCursor(column, line - size);
-            printer.print(oper);
+            printer.Print(oper);
             for (int y = size * 2; y != 0; --y, line++)
             {
                 try
                 {
                     printer.SetCursor(column - y, line);
-                    printer.print(oper);
+                    printer.Print(oper);
                     printer.SetCursor(column + y, line);
-                    printer.print(oper);
+                    printer.Print(oper);
                 }
                 catch
                 {
                     printer.SetCursor(0, line);
-                    printer.print("Error in this line!!!!!!");
+                    printer.Print("Error in this line!!!!!!");
                 }
 
             }
             printer.SetCursor(column, line);
-            printer.print(oper);
+            printer.Print(oper);
         }
     }
 }

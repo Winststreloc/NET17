@@ -11,7 +11,7 @@ namespace Lesson8.ShapeAndMore
         public string Word { get; set; }
         public int Column { get; set; }
         public int Line { get; set; }
-        ConsolePrinter printer = new ConsolePrinter();
+        FilePrinter printer = new FilePrinter();
         public Text(string text, int column, int line)
         {
             Word = text;
@@ -26,7 +26,7 @@ namespace Lesson8.ShapeAndMore
             Console.ForegroundColor = cvet; //SETCOLOR
 
             printer.SetCursor(column, line);
-            printer.print(text);
+            printer.Print(text);
 
             Console.ResetColor(); //RESETCOLOR
         }

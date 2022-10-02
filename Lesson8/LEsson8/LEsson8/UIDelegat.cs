@@ -8,9 +8,10 @@ namespace Lesson8
     public delegate void TaskCompleted(string taskResult);
     public class UIDelegat
     {
+        ConsolePrinter printer = new ConsolePrinter();
         public void ContinueWork(TaskCompleted taskComplited)
         {
-            Console.WriteLine("You want continue?");
+            printer.printLine("You want continue?");
             if (Console.ReadLine() == "Yes")
             {
                 UIStartApp.DeleteAllString();

@@ -15,5 +15,18 @@ namespace Lesson8
             writer.Write(text);
 
         }
+        public void PrintLine(string text)
+        {
+            printer.printLine(text);
+            using StreamWriter writer = new StreamWriter(path, true);
+            writer.WriteLine(text);
+
+        }
+
+
+        public static void IfUserWantNewFile()
+        {
+
+        }
     }
 }

@@ -7,7 +7,7 @@ namespace Lesson8.ShapeAndMore
     [ColorPrint(ConsoleColor.Red)]
     class Square : Shape
     {
-        ConsolePrinter printer = new ConsolePrinter();
+        FilePrinter printer = new FilePrinter();
 
         public Square(int size, string oper, int line, int column) : base(size, oper, line, column)
         {
@@ -25,7 +25,7 @@ namespace Lesson8.ShapeAndMore
             {
                 for (int j = 0; j < size; j++)
                 {
-                    printer.print(oper);
+                    printer.Print(oper);
                 }
                 printer.SetCursor(line, column++);
             }

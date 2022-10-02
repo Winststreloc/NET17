@@ -16,20 +16,30 @@ namespace Lesson8
 
     public class UIStartApp
     {
-        delegate void EndApplication(string message);
-        event EndApplication Notify;
-
+        public static ConsolePrinter printer = new ConsolePrinter();
         private static readonly Assembly asmbly = Assembly.GetExecutingAssembly();
         private static readonly List<Type> typeList = asmbly.GetTypes().Where(
                 t => t.GetInterface("IPrintable") != null).ToList();
+
         
         public static void Start()
+        {
+            printer.printLine("You want work with file?\n");
+            UIFileManager.NeedStart(Console.ReadLine());
+            Drawing();
+
+            DeleteAllString();
+
+            TaskCompleted completed = EndApp;
+            UIDelegat endapp = new UIDelegat();
+            endapp.ContinueWork(completed);
+        }
+        public static void Drawing()
         {
             Type type = typeof(IPrintable);
             Type[] types = Assembly.GetAssembly(type)?.GetTypes();
 
             PrintAllFigure();
-
             string figure = EnterFigure();
             object[] param = EnterParam(figure);
 
@@ -49,11 +59,6 @@ namespace Lesson8
                     }
                 }
             }
-            DeleteAllString();
-
-            TaskCompleted completed = EndApp;
-            UIDelegat endapp = new UIDelegat();
-            endapp.ContinueWork(completed);
         }
         public static void EndApp(string endApp)
         {
@@ -65,29 +70,29 @@ namespace Lesson8
             object[] param;
             if (figure == "Text" || figure == "text")
             {
-                Console.Write("Enter text: ");
+                printer.print("Enter text: ");
                 string text = Console.ReadLine();
                 DeleteString();
-                Console.Write("Enter x: ");
+                printer.print("Enter x: ");
                 int x = int.Parse(Console.ReadLine());
                 DeleteString();
-                Console.Write("Enter y: ");
+                printer.print("Enter y: ");
                 int y = int.Parse(Console.ReadLine());
                 DeleteString();
                 param = new object[] { text, x, y };
             }
             else
             {
-                Console.Write("Enter size: ");
+                printer.print("Enter size: ");
                 int size = int.Parse(Console.ReadLine());
                 DeleteString();
-                Console.Write("Enter operator: ");
+                printer.print("Enter operator: ");
                 string oper = Console.ReadLine();
                 DeleteString();
-                Console.Write("Enter x: ");
+                printer.print("Enter x: ");
                 int x = int.Parse(Console.ReadLine());
                 DeleteString();
-                Console.Write("Enter y: ");
+                printer.print("Enter y: ");
                 int y = int.Parse(Console.ReadLine());
                 DeleteString();
                 param = new object[] { size, oper, x, y };
@@ -96,7 +101,7 @@ namespace Lesson8
         }
         public static string EnterFigure()
         {
-            Console.Write("Enter you figure: ");
+            printer.print("Enter you figure: ");
             string figure = Console.ReadLine();
             DeleteString();
             return figure;
@@ -118,7 +123,7 @@ namespace Lesson8
         }
         public static void PrintAllFigure()
         {
-            Console.Write("All figure: ");
+            printer.print("All figure: ");
             foreach (var shape in typeList)
             {
                 if (shape.Name == "Shape" || shape.Name == "Printer")
@@ -131,7 +136,8 @@ namespace Lesson8
                 }
 
             }
-            Console.WriteLine(" ");
+            printer.print(" ");
+
         }
 
     }
