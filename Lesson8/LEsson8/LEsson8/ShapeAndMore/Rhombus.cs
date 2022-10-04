@@ -18,7 +18,7 @@ namespace Lesson8.ShapeAndMore
             ColorPrintAttribute MyAttribute =
     (ColorPrintAttribute)Attribute.GetCustomAttribute(typeof(Triangle), typeof(ColorPrintAttribute));
             System.ConsoleColor cvet = (System.ConsoleColor)MyAttribute.ColorFig;
-            Console.ForegroundColor = cvet; // устанавливаем цвет
+            Console.ForegroundColor = cvet; 
 
             for (int y = 1; y < size * 2; ++y, line++)
             {

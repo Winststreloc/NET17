@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Lesson8
+﻿namespace Lesson8
 {
     public interface IPrinter
     {

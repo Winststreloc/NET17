@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Threading;
 
 namespace Lesson8
@@ -11,7 +9,7 @@ namespace Lesson8
         private static string path = @"D:\Study\NET17\Lesson8\LEsson8\LEsson8\temp.txt";
         public static void NeedStart(string user)
         {
-            UIStartApp.DeleteAllString();
+            UiStartApp.DeleteAllString();
             if (user == "yes" || user == "Yes")
             {
                 EnterPath();
@@ -23,7 +21,7 @@ namespace Lesson8
         {
             Console.Write("Enter path or void ");
             string newpath = Console.ReadLine();
-            UIStartApp.DeleteAllString();
+            UiStartApp.DeleteAllString();
             if (newpath != "")
             {
                 path = $@"{newpath}";
@@ -31,7 +29,7 @@ namespace Lesson8
         }
         public static void FileReader(string ifNeed)
         {
-            UIStartApp.DeleteAllString();
+            UiStartApp.DeleteAllString();
             Console.SetCursorPosition(0, 2);
             if (ifNeed == "yes" || ifNeed == "Yes")
             {

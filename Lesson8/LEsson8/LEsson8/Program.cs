@@ -7,7 +7,8 @@ namespace Lesson8
     {
         static void Main(string[] args)
         {
-            UiStartApp.Start();
+            var app = new UiStartApp();
+            app.Start();
             Console.ReadKey();
         }
     }

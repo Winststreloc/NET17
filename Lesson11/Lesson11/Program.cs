@@ -1,48 +1,50 @@
 ﻿using System;
+using System.Threading;
 
 namespace Lesson11
 {
-    delegate void SomeMethodDelegate(); //Action
-    delegate void SomeMethodDelegate(int a); //Action<int>
-
-    delegate int SomeMethodDelegate(); //Function<int>
-    delegate int SomeMethodDelegate(string a); //Function <string, int>
-
-    delegate bool SomeMethodDelegate(int a, int b) //Predicate<int, int>
-
     class Program
     {
         static void Main(string[] args)
         {
+            var counter = new Counter();
 
-
-
-
-            #region
-            //var obj = new SomeClass();
-
-            //var attributes = obj.GetType().GetCustomAttributes(false);
-            //bool attrExists = false;
-
-            //foreach (var att in attributes)
-            //{
-            //    if (att is VersionAttribute versionAttribute)
-            //    {
-            //        attrExists = true;
-            //        versionAttribute.Version = 3;
-            //    }
-            //}
-            #endregion
-
-        }
-        static void PrintParameters(Action<int> param)
-        {
-            param()
+            counter.TickEvent += SomeClass.ProcessTick;
+            counter.TickEvent += SomeClass.LogTick;
         }
     }
-    [Version(2, Author = "Some Author")]
-    public class SomeClass
-    {
 
+    public static class SomeClass
+    {
+        public static void ProcessTick(int a)
+        {
+            Console.WriteLine($"Tick processed {a}");
+
+        }
+
+        public static void LogTick(int b)
+        {
+            Console.WriteLine($"Tick logged {b}");
+        }
+    }
+
+
+    public class Counter
+    {
+        public event Action<int> TickEvent;
+
+        public void Tick(int tickNumber = 5000)
+        {
+            for (int i = 0; i < tickNumber; i++)
+            {
+                Thread.Sleep(1000);
+                OnTickEvent(i);
+            }
+        }
+
+        protected virtual void OnTickEvent(int i)
+        {
+            TickEvent?.Invoke(i);
+        }
     }
 }
