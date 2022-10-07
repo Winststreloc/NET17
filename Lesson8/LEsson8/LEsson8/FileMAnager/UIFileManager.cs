@@ -1,15 +1,16 @@
 ﻿using System;
 using System.IO;
 using System.Threading;
+using Lesson8.ShapeAndMore;
 
-namespace Lesson8
+namespace Lesson8.FileMAnager
 {
     public class UIFileManager
     {
         private static string path = @"D:\Study\NET17\Lesson8\LEsson8\LEsson8\temp.txt";
         public static void NeedStart(string user)
         {
-            UiStartApp.DeleteAllString();
+            Drawer.DeleteAllString();
             if (user == "yes" || user == "Yes")
             {
                 EnterPath();
@@ -21,7 +22,7 @@ namespace Lesson8
         {
             Console.Write("Enter path or void ");
             string newpath = Console.ReadLine();
-            UiStartApp.DeleteAllString();
+            Drawer.DeleteAllString();
             if (newpath != "")
             {
                 path = $@"{newpath}";
@@ -29,7 +30,7 @@ namespace Lesson8
         }
         public static void FileReader(string ifNeed)
         {
-            UiStartApp.DeleteAllString();
+            Drawer.DeleteAllString();
             Console.SetCursorPosition(0, 2);
             if (ifNeed == "yes" || ifNeed == "Yes")
             {

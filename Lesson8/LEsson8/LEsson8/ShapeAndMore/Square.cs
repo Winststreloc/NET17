@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Lesson8.Printer;
 
 namespace Lesson8.ShapeAndMore
 {
@@ -25,7 +26,7 @@ namespace Lesson8.ShapeAndMore
             {
                 for (int j = 0; j < size; j++)
                 {
-                    printer.Print(oper);
+                    printer.Write(oper);
                 }
                 printer.SetCursor(line, column++);
             }

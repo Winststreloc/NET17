@@ -1,32 +1,30 @@
 ﻿using System;
 using System.IO;
 
-namespace Lesson8
+namespace Lesson8.Printer
 {
     public class FilePrinter : IPrinter
     {
-        ConsolePrinter printer = new ConsolePrinter();
-        public IPrinter.ConsoleSetCursor SetCursor = (x, y) => Console.SetCursorPosition(x, y);
+        private readonly ConsolePrinter _printer = new ConsolePrinter();
         public static string path = @"D:\Study\NET17\Lesson8\LEsson8\LEsson8\temp.txt";
-        public void Print(string text)
+        public void Write(string text)
         {
-            printer.print(text);
+            _printer.Write(text);
             using StreamWriter writer = new StreamWriter(path, true);
             writer.Write(text);
 
         }
-        public void PrintLine(string text)
+        public void WriteLine(string text)
         {
-            printer.printLine(text);
+            _printer.WriteLine(text);
             using StreamWriter writer = new StreamWriter(path, true);
             writer.WriteLine(text);
 
         }
 
-
-        public static void IfUserWantNewFile()
+        public void SetCursor(int x, int y)
         {
-
+            _printer.SetCursor(x, y);
         }
     }
 }

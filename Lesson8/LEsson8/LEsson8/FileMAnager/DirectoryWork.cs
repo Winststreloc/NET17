@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Linq;
 
-namespace Lesson8
+namespace Lesson8.FileMAnager
 {
     public class DirectoryWork
     {

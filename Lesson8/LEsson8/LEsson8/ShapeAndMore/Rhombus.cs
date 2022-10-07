@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
+using Lesson8.Printer;
 
 namespace Lesson8.ShapeAndMore
 {
@@ -25,38 +26,38 @@ namespace Lesson8.ShapeAndMore
                 try
                 {
                     printer.SetCursor(column - y, line);
-                    printer.Print(oper);
+                    printer.Write(oper);
                     printer.SetCursor(column + y, line);
-                    printer.Print(oper);
+                    printer.Write(oper);
                 }
                 catch
                 {
                     printer.SetCursor(0, line);
-                    printer.PrintLine("Error in this line!!!!!!");
+                    printer.WriteLine("Error in this line!!!!!!");
                 }
 
 
             }
             printer.SetCursor(column, line - size);
-            printer.Print(oper);
+            printer.Write(oper);
             for (int y = size * 2; y != 0; --y, line++)
             {
                 try
                 {
                     printer.SetCursor(column - y, line);
-                    printer.Print(oper);
+                    printer.Write(oper);
                     printer.SetCursor(column + y, line);
-                    printer.Print(oper);
+                    printer.Write(oper);
                 }
                 catch
                 {
                     printer.SetCursor(0, line);
-                    printer.Print("Error in this line!!!!!!");
+                    printer.Write("Error in this line!!!!!!");
                 }
 
             }
             printer.SetCursor(column, line);
-            printer.Print(oper);
+            printer.Write(oper);
         }
     }
 }

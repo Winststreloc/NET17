@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Text;
+﻿using Lesson8.Printer;
+using System;
 
 namespace Lesson8.ShapeAndMore
 {
@@ -20,15 +18,8 @@ namespace Lesson8.ShapeAndMore
         }
         public void Print(string text, int column, int line)
         {
-            ColorPrintAttribute MyAttribute =
-                (ColorPrintAttribute)Attribute.GetCustomAttribute(typeof(Triangle), typeof(ColorPrintAttribute));
-            System.ConsoleColor cvet = (System.ConsoleColor)MyAttribute.ColorFig;
-            Console.ForegroundColor = cvet; //SETCOLOR
-
             printer.SetCursor(column, line);
-            printer.Print(text);
-
-            Console.ResetColor(); //RESETCOLOR
+            printer.Write(text);
         }
 
         public void Print(int size, string oper, int line, int column)

@@ -1,55 +1,6 @@
-
-          0
-         000
-        00000
-       0000000
-      000000000
-111111111111111111111111111111Error in this line!!!!!!Error in this line!!!!!!Error in this line!!!!!!Error in this line!!!!!!1Error in this line!!!!!!Error in this line!!!!!!Error in this line!!!!!!Error in this line!!!!!!Error in this line!!!!!!1111111111111111111111111111111          1
-         111
-        11111
-       1111111
-      111111111
-00000000000000000000000000000000000000009999999999Error in this line!!!!!!
-Error in this line!!!!!!
-Error in this line!!!!!!
-Error in this line!!!!!!
-9Error in this line!!!!!!Error in this line!!!!!!Error in this line!!!!!!Error in this line!!!!!!Error in this line!!!!!!99999999999          0
-         000
-        00000
-       0000000
-      000000000
-          *
-         ***
-        *****
-       *******
-      *********
-          0
-         000
-        00000
-       0000000
-      000000000
-          0
-         000
-        00000
-       0000000
-      000000000
-          0
-         000
-        00000
-       0000000
-      000000000
-          0
-         000
-        00000
-       0000000
-      000000000
           1
          111
         11111
        1111111
       111111111
-          0
-         000
-        00000
-       0000000
-      000000000
+000000000000000000000000000000
