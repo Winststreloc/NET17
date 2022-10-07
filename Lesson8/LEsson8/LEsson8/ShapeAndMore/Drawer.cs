@@ -38,7 +38,7 @@ namespace Lesson8.ShapeAndMore
                         {
                             var obj = (Shape)Activator.CreateInstance(item, param);
                             obj?.Print((int)param[0], (string)param[1], (int)param[2], (int)param[3]);
-                            AddElementInHistory?.Invoke(obj);
+                            AddElementInHistory?.Invoke(obj); // Ne toporny Event
                         }
                         else
                         {
@@ -49,7 +49,7 @@ namespace Lesson8.ShapeAndMore
                     }
                 }
             }
-            EndApp();
+            EndApp(); //Toporny event
         }
         protected virtual void EndApp()
         {

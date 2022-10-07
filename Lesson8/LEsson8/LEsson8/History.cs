@@ -20,7 +20,9 @@ namespace Lesson8
 
     public class HistoryRecord<T>
     {
-
+        /// <summary>
+        /// Why i use array? Because i can)
+        /// </summary>
         T[] listValue = new T[10]; 
         DateTime[] timeCreDateTimes = new DateTime[10]; 
         int index = 0;
