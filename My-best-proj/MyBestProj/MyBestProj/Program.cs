@@ -6,7 +6,13 @@ namespace MyBestProj
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Tree<int> list = new Tree<int>();
+            list.AddNode(5);
+            list.AddNode(3);
+            list.AddNode(8);
+            list.AddNode(7);
+
+            Console.ReadKey();
         }
     }
 }
