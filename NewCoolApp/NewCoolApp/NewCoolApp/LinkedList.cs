@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Text;
 
 
 namespace NewCoolApp
 {
-    public class LinkedList<T> : IEnumerable
+    public class LinkedList<T> : IEnumerable where T : IComparable
     {
         public Node<T> FirstItem { get; private set; }
         public Node<T> LastItem { get; private set; }
@@ -40,7 +42,7 @@ namespace NewCoolApp
         }
 
 
-        public void RemoveAt(int index) 
+        public void RemoveAt(int index)
         {
             if (index == 0)
             {
@@ -117,17 +119,69 @@ namespace NewCoolApp
                 current = current.Next;
             }
         }
-
-        public override string ToString()
+        public int CompareTo(Transformer other)
         {
-            return base.ToString();
+            throw new NotImplementedException();
+        }
+
+        public static string ToString(LinkedList<T> list)
+        {
+            StringBuilder text = new StringBuilder();
+            var current = list.FirstItem;
+            var currentText = list.FirstItem.Data;
+            int counter = list.Count;
+            while (counter > 0)
+            {
+                text.Append($"{currentText} ");
+                if (current.Next != null)
+                {
+                    current = current.Next;
+                    currentText = current.Data;
+                }
+                counter--;
+            }
+            return text.ToString();
+        }
+        public static void Reverse(LinkedList<T> list)
+        {
+            Node<T> previous = null;
+            Node<T> current = list.FirstItem;
+            Node<T> next;
+            while (current != null)
+            {
+                next = current.Next;
+                current.Next = previous;
+                previous = current;
+                current = next;
+            }
+            list.FirstItem = previous;
         }
 
 
-        #region TODO
+        public static void SortList(LinkedList<T> list)
+        {
+            var current = list.FirstItem;
 
+            while (current != null)
+            {
+                var index = current.Next;
 
+                while (index != null)
+                {
+                    if (index.Data.CompareTo(current.Data) > 0)
+                    {
+                        (current.Data, index.Data) = (index.Data, current.Data);
+                    }
+                    index = index.Next;
+                }
+                current = current.Next;
+            }
+        }
 
-        #endregion
+        public int Compare(T x, T y)
+        {
+            return x.ToString().Length - y.ToString().Length;
+        }
     }
+
 }
