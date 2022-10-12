@@ -24,6 +24,7 @@ namespace MyBestProj.BinaryTree
         public void Add(T data)
         {
             var node = new Node<T>(data);
+
             if (data.CompareTo(Data) == -1)
             {
                 if (Left == null)
@@ -44,6 +45,33 @@ namespace MyBestProj.BinaryTree
                 else
                 {
                     Right.Add(data);
+                }
+            }
+        }
+        public void Remove(T data)
+        {
+            var node = new Node<T>(data);
+
+            if (data.CompareTo(Data) == -1)
+            {
+                if (Left == null)
+                {
+                    Left = node;
+                }
+                else
+                {
+                    Left.Remove(data);
+                }
+            }
+            else
+            {
+                if (Right == null)
+                {
+                    Right = node;
+                }
+                else
+                {
+                    Right.Remove(data);
                 }
             }
         }

@@ -22,10 +22,10 @@ namespace MyBestProj.BinaryTree
             Root.Add(data);
         }
 
-        //Node RemoveNode(Node<T> Root, T Data)
-        //{
-        //    if (Root == null) return Root;
-        //}
+        public void RemoveItem(T item)
+        {
+            
+        }
 
         #region TODO
 

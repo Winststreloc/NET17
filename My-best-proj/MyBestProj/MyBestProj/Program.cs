@@ -1,5 +1,6 @@
 ﻿using System;
 using MyBestProj.HomeWork;
+using MyBestProj.BinaryTree;
 
 namespace MyBestProj
 {
@@ -8,16 +9,25 @@ namespace MyBestProj
         static void Main(string[] args)
         {
             #region BinaryTree
-            //Tree<int> list = new Tree<int>();
-            //list.AddNode(5);
-            //list.AddNode(3);
-            //list.AddNode(8);
-            //list.AddNode(7);
+
+
+            Tree<int> list = new Tree<int>();
+            list.AddNode(5);
+            list.AddNode(3);
+            list.AddNode(8);
+            list.AddNode(7);
+            list.AddNode(1);
+            list.AddNode(4);
+            list.AddNode(6);
+            list.AddNode(9);
 
 
             #endregion
 
-            UI.Start();
+            #region Table
+            //UI.Start();
+            #endregion
+
             Console.ReadKey();
         }
     }
