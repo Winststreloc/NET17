@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MyBestProj
+namespace MyBestProj.BinaryTree
 {
-    public  class Node<T> : IComparable<T>
+    public class Node<T> : IComparable<T>
         where T : IComparable
     {
         public T Data { get; set; }

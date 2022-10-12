@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MyBestProj
+namespace MyBestProj.BinaryTree
 {
     public class Tree<T>
-        where T: IComparable
+        where T : IComparable
     {
         public Node<T> Root { get; private set; }
         public int Count { get; private set; }
@@ -21,6 +21,11 @@ namespace MyBestProj
 
             Root.Add(data);
         }
+
+        //Node RemoveNode(Node<T> Root, T Data)
+        //{
+        //    if (Root == null) return Root;
+        //}
 
         #region TODO
 

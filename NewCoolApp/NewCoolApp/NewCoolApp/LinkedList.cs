@@ -168,7 +168,7 @@ namespace NewCoolApp
 
                 while (index != null)
                 {
-                    if (index.Data.CompareTo(current.Data) > 0)
+                    if (current.Data.CompareTo(index.Data) > 0)
                     {
                         (current.Data, index.Data) = (index.Data, current.Data);
                     }
