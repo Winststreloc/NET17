@@ -52,7 +52,11 @@ namespace MyBestProj.BinaryTree
         {
             var node = new Node<T>(data);
 
-            if (data.CompareTo(Data) == -1)
+            if (data.CompareTo(Data) == 0)
+            {
+
+            }
+            else if (data.CompareTo(Data) == -1)
             {
                 if (Left == null)
                 {
