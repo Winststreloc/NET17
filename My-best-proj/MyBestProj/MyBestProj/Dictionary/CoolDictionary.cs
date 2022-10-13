@@ -21,6 +21,7 @@ namespace MyBestProj.Dictionary
                 Keys.Add(key);
                 Items.Add(item);
             }
+            else throw new Exception("List contains this KEY");
         }
         public bool TryGetValue(TKey key, out TValue value)
         {
@@ -34,6 +35,21 @@ namespace MyBestProj.Dictionary
             }
             value = default(TValue);
             return false;
+        }
+        public bool TryAdd(TKey key, TValue value)
+        {
+            if (!Keys.Contains(key))
+            {
+                var item = new Item<TKey, TValue>(key, value);
+                Keys.Add(key);
+                Items.Add(item);
+                return true;
+            }
+            else return false;
+        }
+        public bool ContainsKey(TKey key)
+        {
+            return Keys.Contains(key) ? true : false;
         }
         public void Clear()
         {

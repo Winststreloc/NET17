@@ -9,4 +9,8 @@
     <None Remove="HomeWork\Table.cs~RF417766.TMP" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Graph\" />
+  </ItemGroup>
+
 </Project>

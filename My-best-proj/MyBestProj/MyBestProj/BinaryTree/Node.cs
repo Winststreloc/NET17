@@ -8,6 +8,7 @@ namespace MyBestProj.BinaryTree
         where T : IComparable
     {
         public T Data { get; set; }
+        public int Key { get; set; }
         public Node<T> Left { get; set; }
         public Node<T> Right { get; set; }
 
@@ -24,6 +25,7 @@ namespace MyBestProj.BinaryTree
         public void Add(T data)
         {
             var node = new Node<T>(data);
+            node.Key++;
 
             if (data.CompareTo(Data) == -1)
             {
@@ -47,37 +49,13 @@ namespace MyBestProj.BinaryTree
                     Right.Add(data);
                 }
             }
+
         }
         public void Remove(T data)
         {
             var node = new Node<T>(data);
+            var previos = new Node<T>(Data);
 
-            if (data.CompareTo(Data) == 0)
-            {
-
-            }
-            else if (data.CompareTo(Data) == -1)
-            {
-                if (Left == null)
-                {
-                    Left = node;
-                }
-                else
-                {
-                    Left.Remove(data);
-                }
-            }
-            else
-            {
-                if (Right == null)
-                {
-                    Right = node;
-                }
-                else
-                {
-                    Right.Remove(data);
-                }
-            }
         }
         public int CompareTo(Node<T> obj)
         {
