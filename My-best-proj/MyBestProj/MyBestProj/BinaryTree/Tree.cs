@@ -22,6 +22,7 @@ namespace MyBestProj.BinaryTree
             }
 
             Root.Add(data);
+
             Count++;
         }
 
@@ -38,9 +39,6 @@ namespace MyBestProj.BinaryTree
                 temp = listNode.Peek();
                 listNode.Dequeue();
 
-                if (temp.Key == key)
-                    keyNode = temp;
-
                 if (temp.Left != null)
                     listNode.Enqueue(temp.Left);
 
@@ -48,12 +46,12 @@ namespace MyBestProj.BinaryTree
                     listNode.Enqueue(temp.Right);
             }
 
-            if (keyNode != null)
-            {
-                int x = temp.Key;
-                deleteDeepest(root, temp);
-                keyNode.key = x;
-            }
+            //if (keyNode != null)
+            //{
+            //    int x = temp.Key;
+            //    deleteDeepest(root, temp);
+            //    keyNode.key = x;
+            //}
         }
 
         #region TODO

@@ -7,19 +7,19 @@ namespace MyBestProj.Queue
 {
     public class CoolQue<T>
     {
-        private List<T> items = new List<T>();
-        public int Count => items.Count;
+        private List<T> _items = new List<T>();
+        public int Count => _items.Count;
 
         public void Enqueue(T item)
         {
-            items.Add(item);
+            _items.Add(item);
         }
         public T Dequeue()
         {
             if (Count > 0)
             {
-                var item = items[0];
-                items.Remove(item);
+                var item = _items[0];
+                _items.Remove(item);
                 return item;
             }
             else throw new Exception("count in Queue < 0");
@@ -27,11 +27,11 @@ namespace MyBestProj.Queue
 
         public void Clear()
         {
-            items.Clear();
+            _items.Clear();
         }
         public void Print()
         {
-            foreach(var item in items)
+            foreach(var item in _items)
             {
                 Console.WriteLine(item.ToString());
             }

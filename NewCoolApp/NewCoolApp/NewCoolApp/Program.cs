@@ -6,6 +6,8 @@ namespace NewCoolApp
     {
         static void Main(string[] args)
         {
+            Console.WriteLine(DigitalRoot(61984595376));
+            Console.ReadKey();
             //LinkedList<Transformer> list = new LinkedList<Transformer>();
             //list.Add(new Autobots("autobot", 1));
             //list.Add(new Autobots("kremlebot", 2));
@@ -19,22 +21,41 @@ namespace NewCoolApp
             //list.Insert(2, new Autobots("BadBoom", 0));
                
 
-            LinkedList<int> transformers = new LinkedList<int>();
-            transformers.Add(1);
-            transformers.Add(2);
-            transformers.Add(3);
-            transformers.Add(4);
-            transformers.Add(5);
-            transformers.Add(6);
+            //LinkedList<int> transformers = new LinkedList<int>();
+            //transformers.Add(1);
+            //transformers.Add(2);
+            //transformers.Add(3);
+            //transformers.Add(4);
+            //transformers.Add(5);
+            //transformers.Add(6);
 
-            LinkedList<int>.Reverse(transformers);
-            LinkedList<int>.SortList(transformers);
-            foreach (var type in transformers)
+            //LinkedList<int>.Reverse(transformers);
+            //LinkedList<int>.SortList(transformers);
+            //foreach (var type in transformers)
+            //{
+            //    Console.Write(type);
+            //}
+
+            //Console.ReadKey();
+        }
+        public static int DigitalRoot(long n)
+        {
+            long result = 0;
+            while (result == 0)
             {
-                Console.Write(type);
+                while (n > 0)
+                {
+                    result += n % 10;
+                    n /= 10;
+                }
+                if (result > 10)
+                {
+                    n = result;
+                    result = 0;
+                }
             }
 
-            Console.ReadKey();
+            return (int)result;
         }
     }
 }

@@ -6,9 +6,9 @@ namespace MyBestProj.BinaryTree
 {
     public class Node<T> : IComparable<T>
         where T : IComparable
-    {
+    { 
         public T Data { get; set; }
-        public int Key { get; set; }
+        public Node<T> Parent { get; set; }
         public Node<T> Left { get; set; }
         public Node<T> Right { get; set; }
 
@@ -25,13 +25,14 @@ namespace MyBestProj.BinaryTree
         public void Add(T data)
         {
             var node = new Node<T>(data);
-            node.Key++;
 
             if (data.CompareTo(Data) == -1)
             {
                 if (Left == null)
                 {
                     Left = node;
+                    Left.Parent = node;
+                   
                 }
                 else
                 {
@@ -43,6 +44,7 @@ namespace MyBestProj.BinaryTree
                 if (Right == null)
                 {
                     Right = node;
+                    Right.Parent = node;
                 }
                 else
                 {

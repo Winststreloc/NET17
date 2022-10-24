@@ -29,7 +29,14 @@ namespace MyBestProj
             #endregion
 
             #region Table
-            //UI.Start();
+
+
+
+
+            Ui.Start();
+            Ui.WorkApp();
+
+
             #endregion
 
             #region Dictionary

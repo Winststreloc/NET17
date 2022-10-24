@@ -7,19 +7,19 @@ namespace MyBestProj.Stack
 {
     public class CoolStack<T>
     {
-        private List<T> items = new List<T>();
-        public int Count => items.Count;
+        private List<T> _items = new List<T>();
+        public int Count => _items.Count;
 
         public void Push(T item)
         {
-            items.Add(item);
+            _items.Add(item);
         }
         public T Pop()
         {
             if (Count > 0)
             {
-                var item = items.LastOrDefault();
-                items.Remove(items.LastOrDefault());
+                var item = _items.LastOrDefault();
+                _items.Remove(_items.LastOrDefault());
                 return item;
             }
             else throw new Exception("count in stack < 0");
@@ -28,19 +28,19 @@ namespace MyBestProj.Stack
         {
             if (Count > 0)
             {
-                return items.LastOrDefault();
+                return _items.LastOrDefault();
             }
             else throw new Exception("count in stack < 0");
         }
         public void Clear()
         {
-            items.Clear();
+            _items.Clear();
         }
         public void Print()
         {
             for(int i = Count; i > 0; i--)
             {
-                Console.WriteLine(items[i]);
+                Console.WriteLine(_items[i]);
             }
         }
     }
