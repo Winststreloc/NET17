@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Text;
 
 
@@ -118,10 +117,6 @@ namespace NewCoolApp
                 yield return current.Data;
                 current = current.Next;
             }
-        }
-        public int CompareTo(Transformer other)
-        {
-            throw new NotImplementedException();
         }
 
         public static string ToString(LinkedList<T> list)
